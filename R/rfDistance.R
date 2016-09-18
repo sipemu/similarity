@@ -22,8 +22,9 @@ terminalNodeIdsRanger <- function(x, rf) {
                                       childNodes2 = rf$forest$child.nodeIDs[[tree]][[2]], 
                                       splitValues = as.double(rf$forest$split.values[[tree]]),
                                       splitVarIds = rf$forest$split.varIDs[[tree]])
-  })
-  return(res)
+  }, simplify = F)
+  res <- do.call(cbind, res)
+  as.matrix(res)
 }
 
 
@@ -77,24 +78,18 @@ proximityMatrixRanger <- function(x, y = NULL, rf) {
 #' \dontrun{
 #' require(ranger)
 #' rf <- ranger(Species ~ ., data = iris, num.trees = 5, write.forest = TRUE)
-#' depthMatrixRanger(iris[, -5], rf)
+#' depthMatrixRanger(x=iris[, -5], rf=rf)
 #' }
 #' 
 #' @export
-depthMatrixRanger <- function(x, rf) {
+depthMatrixRanger <- function(x, y=NULL, rf) {
   x %>% 
-    as.matrix(x) %>% 
+    as.matrix() %>% 
     terminalNodeIdsRanger(rf) %>% 
     Similarity:::depthMatrixRangerCPP(rangerTreeAsMat(rf)) -> d
   n <- nrow(x)
   # convert to dist object
-  structure(.Data  = d,
-            Size   = n,
-            Labels = 1:n,
-            Diag   = F,
-            Upper  = F,
-            method = "rangerProximity",
-            class  = "dist")
+  asDistObject(d, n, "rangerProximity")
 }
 
 
