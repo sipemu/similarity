@@ -20,6 +20,20 @@ arma::vec distanceXYCPP(arma::mat& x, arma::mat& y, std::string method="euclidia
   return dist.get();
 }
 
+// [[Rcpp::export]]
+arma::vec wDistanceCPP(arma::mat& x, arma::vec& weights) {
+  weightedDistanceAPI dist;
+  dist.init(x, weights);
+  return dist.get();
+}
+
+// [[Rcpp::export]]
+arma::vec wDistanceXYCPP(arma::mat& x, arma::mat& y, arma::vec& weights) {
+  weightedXYDistanceAPI dist;
+  dist.init(x, y, weights);
+  return dist.get();
+}
+
 /**
  * Ranger RandomForest related distances
  */

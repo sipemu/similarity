@@ -80,7 +80,13 @@ public:
 class rangerProximity : public distance {
 public:
   virtual double calc_distance(arma::rowvec& x, arma::rowvec& y) const {
-    return arma::accu(x != y) * 1. / nTrees_;
+    int similarity = 0;
+    for (auto i=0;i<x.size();++i) {
+      if (x(i) == y(i)) {
+        ++similarity;
+      }
+    }
+    return similarity * 1. / nTrees_;
   };
   
   void set_parameters(std::uint32_t nTrees) {
@@ -104,10 +110,11 @@ public:
         d = nodeDists_.getValue(y[t], x[t], t);
       } else {
         d = 0.0;
+        ++nTree;
       }
-      if (d >= 0.0) {
+      if (d > 0.0) {
         // TODO: set trafo
-        sum += d;
+        sum += 1. / d;
         ++nTree;
       }
     }

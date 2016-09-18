@@ -58,13 +58,7 @@ proximityMatrixRanger <- function(x, y = NULL, rf) {
       Similarity:::proximityMatrixRangerCPP() -> d
     n <- nrow(x)
     # convert to dist object
-    structure(.Data  = d,
-              Size   = n,
-              Labels = 1:n,
-              Diag   = F,
-              Upper  = F,
-              method = "rangerProximity",
-              class  = "dist")
+
   } else {
     x %>% 
       as.matrix() %>% 
