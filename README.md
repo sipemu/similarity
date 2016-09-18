@@ -1,8 +1,8 @@
-[![Build Status](https://travis-ci.org/sipemu/case-based-reasoning.svg?branch=master)](https://travis-ci.org/sipemu/case-based-reasoning)
+[![Build Status](https://travis-ci.org/sipemu/similarity.svg?branch=master)](https://travis-ci.org/sipemu/similarity)
 
-# Case Based Reasoning for Survival Data
+# Distance and Similarity MEasures
 
-http://sipemu.github.io/case-based-reasoning/
+http://sipemu.github.io/similarity/
 
 ### Literatur
 
@@ -12,4 +12,4 @@ http://sipemu.github.io/case-based-reasoning/
 
 ## License
 
-TODO
+GPLv2
