@@ -30,6 +30,7 @@ distance <- function(x, y=NULL, method="euclidian", p=2) {
 #' 
 #' @param x a new dataset
 #' @param y a second new dataset
+#' @param weights a vector of weights
 #' 
 #' @return a \code{dist} or \code{matrix} object
 #' 

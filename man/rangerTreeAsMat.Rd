@@ -6,6 +6,9 @@
 \usage{
 rangerTreeAsMat(rf)
 }
+\arguments{
+\item{rf}{\code{ranger} object}
+}
 \value{
 a \code{matrix} object with 
 Column 1: tree ID

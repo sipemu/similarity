@@ -1,4 +1,4 @@
-#include "distanceAPI.hpp"
+#include "distanceAPI.h"
 
 void distanceAPI::init(arma::mat& x, std::string method, std::size_t p) {
   this->set_distance(method, p);

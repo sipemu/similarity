@@ -5,17 +5,15 @@ Version: 0.1
 Date: 2016-09-10
 Author: Dr. Simon Mueller <simon.mueller@muon-stat.com>
 Maintainer: Dr. Simon Mueller <simon.mueller@muon-stat.com>
-Description: Similarity Calculation
+Description: This package has parallel C++ functions for standard distance calculations. Furthermore, the proximity matrix and depth matrix of a ranger object can be calculated.
 License: GPL-2
 LazyData: TRUE
 Depends:
-    dplyr (>= 0.4.1),
     Rcpp,
     RcppArmadillo,
-    RcppParallel,
-    ranger,
-    dplyr,
-    data.table,
+    RcppParallel
+Imports:
+    dplyr (>= 0.4.1),
     magrittr
 LinkingTo: Rcpp, RcppParallel, RcppArmadillo
 SystemRequirements: GNU make

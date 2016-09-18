@@ -5,7 +5,7 @@
 #include <RcppParallel.h>
 #include "tbb/concurrent_unordered_map.h"
 
-#include "hash.hpp"
+#include "hash.h"
 
 template<T>
 class matrixContainer {

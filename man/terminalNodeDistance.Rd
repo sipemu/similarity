@@ -13,8 +13,8 @@ terminalNodeDistance(rf)
 a \code{matrix} object with pairwise terminal node edge length
 }
 \description{
-first two columns are terminal node IDs; If an ID pair do not appear in a tree
--1 is inserted
+first two columns are terminal node IDs; If an ID pair do not appear in a 
+tree -1 is inserted
 }
 \examples{
 \dontrun{

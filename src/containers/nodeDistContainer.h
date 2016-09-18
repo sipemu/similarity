@@ -4,7 +4,7 @@
 #include <Rcpp.h>
 #include <unordered_map>
 
-#include "hash.hpp"
+#include "hash.h"
 
 // borrowed from: https://github.com/dselivanov/text2vec/blob/master/src/SparseTripletMatrix.h
 class RfDistContainer {

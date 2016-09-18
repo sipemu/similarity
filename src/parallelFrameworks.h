@@ -5,7 +5,7 @@
 // [[Rcpp::depends(RcppArmadillo)]]
 #include <RcppArmadillo.h>
 
-#include "distance/distance.hpp"
+#include "distance/distance.h"
 
 #include <memory>
 

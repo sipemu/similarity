@@ -1,7 +1,7 @@
 #' Get terminal node IDs of observations of an ranger object
 #'
-#' @param rf \code{ranger} object
 #' @param x a new dataset
+#' @param rf \code{ranger} object
 #' 
 #' @return Matrix with terminal node IDs for all observations in x (rows) and
 #'         trees (columns)
@@ -30,9 +30,9 @@ terminalNodeIdsRanger <- function(x, rf) {
 
 #' Get proximity matrix of an ranger object
 #'
-#' @param rf \code{ranger} object
 #' @param x a new dataset
 #' @param y a second new dataset (Default: NULL)
+#' @param rf \code{ranger} object
 #' 
 #' @return a \code{dist} or a matrix object with pairwise proximity of 
 #' observations in x vs y (if not null)
@@ -56,7 +56,7 @@ proximityMatrixRanger <- function(x, y = NULL, rf) {
     as.matrix() %>% 
     terminalNodeIdsRanger(rf) -> xNodes
   if (is.null(y)) {
-    d <- Similarity:::proximityMatrixRangerCPP(xNodes)
+    d <- proximityMatrixRangerCPP(xNodes)
     n <- nrow(x)
     # convert to dist object
     asDistObject(d, n, "RFProximity")
@@ -70,6 +70,10 @@ proximityMatrixRanger <- function(x, y = NULL, rf) {
 
 
 #' Get mean node dist length
+#' 
+#' @param x a new dataset
+#' @param y a new dataset
+#' @param rf \code{ranger} object
 #' 
 #' @examples
 #' \dontrun{
@@ -123,6 +127,8 @@ terminalNodeDistance <- function(rf) {
 
 
 #' Transform trees of a \code{ranger}-object to a matrix
+#' 
+#' @param rf \code{ranger} object
 #' 
 #' @return a \code{matrix} object with 
 #' Column 1: tree ID

@@ -6,6 +6,13 @@
 \usage{
 orderCPP(x, desc = T, k = 0)
 }
+\arguments{
+\item{x}{a \code{matrix} or \code{vector}}
+
+\item{desc}{Desceding or ascending ordering}
+
+\item{k}{returns k first elements (default k = 0: all elements)}
+}
 \description{
 C++ Version for ordering a matrix or an vector
 }

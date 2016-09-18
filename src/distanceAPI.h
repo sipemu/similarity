@@ -4,11 +4,11 @@
 // [[Rcpp::depends(RcppArmadillo)]]
 #include<RcppArmadillo.h>
 
-#include "distance/distance.hpp"
-#include "parallelFrameworks.hpp"
+#include "distance/distance.h"
+#include "parallelFrameworks.h"
 
-#include "ranger/rangerForest.hpp"
-#include "containers/nodeDistContainer.hpp"
+#include "ranger/rangerForest.h"
+#include "containers/nodeDistContainer.h"
 
 /**
  * Distance Calculation

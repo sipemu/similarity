@@ -4,7 +4,14 @@
 \alias{depthMatrixRanger}
 \title{Get mean node dist length}
 \usage{
-depthMatrixRanger(x, rf)
+depthMatrixRanger(x, y = NULL, rf)
+}
+\arguments{
+\item{x}{a new dataset}
+
+\item{y}{a new dataset}
+
+\item{rf}{\code{ranger} object}
 }
 \description{
 Get mean node dist length
@@ -13,7 +20,7 @@ Get mean node dist length
 \dontrun{
 require(ranger)
 rf <- ranger(Species ~ ., data = iris, num.trees = 5, write.forest = TRUE)
-depthMatrixRanger(iris[, -5], rf)
+depthMatrixRanger(x=iris[, -5], rf=rf)
 }
 
 }

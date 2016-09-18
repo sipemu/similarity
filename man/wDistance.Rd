@@ -10,6 +10,8 @@ wDistance(x, y = NULL, weights = NULL)
 \item{x}{a new dataset}
 
 \item{y}{a second new dataset}
+
+\item{weights}{a vector of weights}
 }
 \value{
 a \code{dist} or \code{matrix} object
