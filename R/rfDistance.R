@@ -17,11 +17,11 @@
 terminalNodeIdsRanger <- function(x, rf) {
   x <- as.matrix(x)
   res=sapply(1:rf$num.trees, function(tree) {
-    Similarity:::terminalNodeIDRanger(x = x, 
-                                      childNodes1 = rf$forest$child.nodeIDs[[tree]][[1]], 
-                                      childNodes2 = rf$forest$child.nodeIDs[[tree]][[2]], 
-                                      splitValues = as.double(rf$forest$split.values[[tree]]),
-                                      splitVarIds = rf$forest$split.varIDs[[tree]])
+    terminalNodeIDRanger(x = x, 
+                         childNodes1 = rf$forest$child.nodeIDs[[tree]][[1]], 
+                         childNodes2 = rf$forest$child.nodeIDs[[tree]][[2]], 
+                         splitValues = as.double(rf$forest$split.values[[tree]]),
+                         splitVarIds = rf$forest$split.varIDs[[tree]])
   }, simplify = F)
   res <- do.call(cbind, res)
   as.matrix(res)
@@ -52,22 +52,19 @@ terminalNodeIdsRanger <- function(x, rf) {
 #' 
 #' @export
 proximityMatrixRanger <- function(x, y = NULL, rf) {
+  x %>% 
+    as.matrix() %>% 
+    terminalNodeIdsRanger(rf) -> xNodes
   if (is.null(y)) {
-    x %>% 
-      as.matrix() %>% 
-      terminalNodeIdsRanger(rf) %>% 
-      Similarity:::proximityMatrixRangerCPP() -> d
+    d <- Similarity:::proximityMatrixRangerCPP(xNodes)
     n <- nrow(x)
     # convert to dist object
-
+    asDistObject(d, n, "RFProximity")
   } else {
-    x %>% 
-      as.matrix() %>% 
-      terminalNodeIdsRanger(rf) -> xNodes
     y %>% 
       as.matrix() %>% 
       terminalNodeIdsRanger(rf) -> yNodes
-    Similarity:::proximityMatrixRangerCPPNM(xNodes, yNodes)
+    proximityMatrixRangerCPPNM(xNodes, yNodes)
   }
 }
 
@@ -85,18 +82,27 @@ proximityMatrixRanger <- function(x, y = NULL, rf) {
 depthMatrixRanger <- function(x, y=NULL, rf) {
   x %>% 
     as.matrix() %>% 
-    terminalNodeIdsRanger(rf) %>% 
-    Similarity:::depthMatrixRangerCPP(rangerTreeAsMat(rf)) -> d
-  n <- nrow(x)
-  # convert to dist object
-  asDistObject(d, n, "rangerProximity")
+    terminalNodeIdsRanger(rf) -> xNodes
+  rf %>% 
+    rangerTreeAsMat() -> rfTrees
+  if (is.null(y)) {
+    d <- depthMatrixRangerCPP(xNodes, rfTrees) 
+    n <- nrow(x)
+    # convert to dist object
+    asDistObject(d, n, "RFDepth")
+  } else {
+    y %>% 
+      as.matrix() %>% 
+      terminalNodeIdsRanger(rf) -> yNodes
+    depthMatrixRangerCPPXY(xNodes, yNodes, rfTrees)
+  }
 }
 
 
 #' Terminal node distance for each tree and terminal
 #' 
-#' first two columns are terminal node IDs; If an ID pair do not appear in a tree
-#' -1 is inserted
+#' first two columns are terminal node IDs; If an ID pair do not appear in a 
+#' tree -1 is inserted
 #'   
 #' @param rf \code{ranger} object
 #' 
@@ -112,7 +118,7 @@ depthMatrixRanger <- function(x, y=NULL, rf) {
 #' @export
 terminalNodeDistance <- function(rf) {
   rangerTreeAsMat(rf) %>% 
-    Similarity:::terminalNodeDistanceCPP()
+    terminalNodeDistanceCPP()
 }
 
 
