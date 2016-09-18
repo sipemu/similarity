@@ -9,6 +9,14 @@ distanceXYCPP <- function(x, y, method = "euclidian", p = 2L) {
     .Call('Similarity_distanceXYCPP', PACKAGE = 'Similarity', x, y, method, p)
 }
 
+wDistanceCPP <- function(x, weights) {
+    .Call('Similarity_wDistanceCPP', PACKAGE = 'Similarity', x, weights)
+}
+
+wDistanceXYCPP <- function(x, y, weights) {
+    .Call('Similarity_wDistanceXYCPP', PACKAGE = 'Similarity', x, y, weights)
+}
+
 terminalNodeDistanceCPP <- function(terminalNodeIDs) {
     .Call('Similarity_terminalNodeDistanceCPP', PACKAGE = 'Similarity', terminalNodeIDs)
 }

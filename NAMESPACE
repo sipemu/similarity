@@ -2,6 +2,7 @@
 
 export(depthMatrixRanger)
 export(distance)
+export(orderCPP)
 export(proximityMatrixRanger)
 export(rangerTreeAsMat)
 export(terminalNodeDistance)
