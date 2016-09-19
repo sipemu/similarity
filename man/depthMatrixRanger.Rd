@@ -2,7 +2,7 @@
 % Please edit documentation in R/rfDistance.R
 \name{depthMatrixRanger}
 \alias{depthMatrixRanger}
-\title{Get mean node dist length}
+\title{Get depth distance matrix}
 \usage{
 depthMatrixRanger(x, y = NULL, rf)
 }
@@ -14,7 +14,7 @@ depthMatrixRanger(x, y = NULL, rf)
 \item{rf}{\code{ranger} object}
 }
 \description{
-Get mean node dist length
+Get depth distance matrix
 }
 \examples{
 \dontrun{
