@@ -16,7 +16,7 @@
 #' 
 #' @export
 distance <- function(x, y=NULL, method="euclidian", p=2) {
-  stdDist <- method %in% c("euclidian", "manhattan", "minkowski")
+  stdDist <- method %in% c("euclidian", "manhattan", "minkowski", "maximum")
   if (stdDist && is.null(y)) {
     d <- distanceCPP(as.matrix(x), method, p) 
     return(asDistObject(d, nrow(x), method))

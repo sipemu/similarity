@@ -23,3 +23,11 @@ testthat::test_that("Minkowski", {
   d2 <- dist(x, method = "minkowski", p=3)
   testthat::expect_equal(as.matrix(d1), as.matrix(d2))
 })
+
+testthat::test_that("Maximum", {
+  set.seed((1234))
+  x <- matrix(rnorm(100), 10)
+  d1 <- distance(x, method = "maximum")
+  d2 <- dist(x, method = "maximum")
+  testthat::expect_equal(as.matrix(d1), as.matrix(d2))
+})
