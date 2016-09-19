@@ -4,6 +4,6 @@ asDistObject <- function(x, n, method) {
             Labels = 1:n,
             Diag   = F,
             Upper  = F,
-            method = "rangerProximity",
+            method = method,
             class  = "dist")
 }
