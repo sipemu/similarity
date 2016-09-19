@@ -9,25 +9,30 @@ void distanceAPI::set_distance(std::string distMethod, std::size_t p) {
   if (distMethod.compare("euclidian") == 0) {
     euclidianDistance dist;
     dist.set_parameters();
-    this->dist_ = std::make_shared<euclidianDistance>(dist);
+    dist_ = std::make_shared<euclidianDistance>(dist);
   } else if (distMethod.compare("manhattan") == 0) {
     manhattanDistance dist;
     dist.set_parameters();
-    this->dist_ = std::make_shared<manhattanDistance>(dist);
+    dist_ = std::make_shared<manhattanDistance>(dist);
   } else if (distMethod.compare("minkowski") == 0) {
     minkowskiDistance dist;
     dist.set_parameters(p);
-    this->dist_ = std::make_shared<minkowskiDistance>(dist);
+    dist_ = std::make_shared<minkowskiDistance>(dist);
+  } else if (distMethod.compare("maximum") == 0) {
+    maximumDistance dist;
+    dist.set_parameters();
+    dist_ = std::make_shared<maximumDistance>(dist);
+  } else {
+    distance dist;
+    dist_ = std::make_shared<distance>(dist);
   }
-  distance dist;
-  this->dist_ = std::make_shared<distance>(dist);
 };
 
 void distanceAPI::calc(arma::mat& x) {
   int nrow = x.n_rows;
   arma::vec output(nrow * (nrow - 1) / 2);
   output_ = output;
-  parallelDistance parallelDistance(x, this->dist_, nrow, output_);
+  parallelDistance parallelDistance(x, dist_, nrow, output_);
   parallelFor(0, nrow, parallelDistance);
 };
 
