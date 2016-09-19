@@ -69,7 +69,7 @@ proximityMatrixRanger <- function(x, y = NULL, rf) {
 }
 
 
-#' Get mean node dist length
+#' Get depth distance matrix
 #' 
 #' @param x a new dataset
 #' @param y a new dataset
