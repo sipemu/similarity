@@ -18,10 +18,10 @@
 distance <- function(x, y=NULL, method="euclidian", p=2) {
   stdDist <- method %in% c("euclidian", "manhattan", "minkowski")
   if (stdDist && is.null(y)) {
-    d <- distanceCPP(x, method, p) 
+    d <- distanceCPP(as.matrix(x), method, p) 
     return(asDistObject(d, nrow(x), method))
   } else {
-    return(distanceXYCPP(x, y, method, p))
+    return(distanceXYCPP(as.matrix(x), as.matrix(y), method, p))
   }
 }
 
