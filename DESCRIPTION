@@ -9,14 +9,17 @@ Description: This package has parallel C++ functions for standard distance calcu
 License: GPL-2
 LazyData: TRUE
 Depends:
-    Rcpp,
-    RcppArmadillo,
-    RcppParallel
+  R (>= 3.1.2)
 Imports:
-    dplyr (>= 0.4.1),
-    magrittr
-LinkingTo: Rcpp, RcppParallel, RcppArmadillo
-SystemRequirements: GNU make
+  dplyr (>= 0.4.1),
+  Rcpp (>= 0.12.7),
+  RcppArmadillo,
+  RcppParallel,
+  magrittr
+Suggests:
+  testthat
+LinkingTo: Rcpp (>= 0.12.7), RcppParallel, RcppArmadillo
+SystemRequirements: C++11
 LazyLoad: yes
 ByteCompile: yes
 RoxygenNote: 5.0.1
