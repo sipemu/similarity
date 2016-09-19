@@ -22,9 +22,9 @@ struct parallelOrderMatrix : public Worker {
   
   void operator() (std::size_t begin, std::size_t end) {
     arma::uvec order(x_.n_rows);
-    for (std::size_t i=begin;i<end;++i) {
+    for (auto i=begin;i<end;++i) {
       order = arma::sort_index(x_.col(i), sortDirection_);
-      for (std::size_t l=0;l<k_;++l) {
+      for (auto l=0;l<k_;++l) {
         output_(l, i) = order(l) + 1;
       }
     }
@@ -33,8 +33,13 @@ struct parallelOrderMatrix : public Worker {
 
 arma::umat orderMatrix(arma::mat& x, int sortDirection, int k) {
   int nCols = x.n_cols;
-  arma::umat output(k, nCols);
-  parallelOrderMatrix parallelOrderMatrix(x, sortDirection, k, output);
+  int nRows = k;
+  if (k == 0) {
+    nRows = x.n_rows;
+  } 
+  arma::umat output(nRows, nCols);
+  output.fill(0);
+  parallelOrderMatrix parallelOrderMatrix(x, sortDirection, nRows, output);
   parallelFor(0, nCols, parallelOrderMatrix);
   return output;
 }
@@ -43,11 +48,15 @@ arma::umat orderMatrix(arma::mat& x, int sortDirection, int k) {
 
 arma::umat orderMatrix(arma::mat& x, int sortDirection, int k) {
   int nCols = x.n_cols;
-  arma::umat output(nCols, k);
+  int nRows = k;
+  if (k == 0) {
+    nRows = x.n_rows;
+  } 
+  arma::umat output(nRows, nCols);
   arma::uvec order(x.n_rows);
   for (std::size_t i; i<nCols; ++i) {
     order = arma::sort_index(x.col(i), sortDirection);
-    for (std::size_t l = 0; l < k; ++l) {
+    for (auto l=0;l<nRows;++l) {
       output(l, i) = order(l) + 1;
     }
   }
