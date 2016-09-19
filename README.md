@@ -11,6 +11,3 @@ http://sipemu.github.io/similarity/
 
 [2] http://www.biomedcentral.com/1472-6947/14/24
 
-## License
-
-GPLv2
