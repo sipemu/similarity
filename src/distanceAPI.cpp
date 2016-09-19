@@ -48,7 +48,7 @@ void weightedDistanceAPI::init(arma::mat& x, arma::vec& weights) {
 void weightedDistanceAPI::set_distance(arma::vec& weights) {
   weightedDistance dist;
   dist.set_parameters(weights);
-  this->dist_ = std::make_shared<weightedDistance>(dist);
+  dist_ = std::make_shared<weightedDistance>(dist);
 };
 
 
@@ -64,7 +64,7 @@ void xyDistanceAPI::calc(arma::mat& x, arma::mat& y) {
   int nrow = x.n_rows;
   arma::mat output(nrow, y.n_rows);
   output_ = output;
-  parallelDistanceNM parallelDistanceNM(x, y, this->dist_, nrow, output_);
+  parallelDistanceNM parallelDistanceNM(x, y, dist_, nrow, output_);
   parallelFor(0, nrow, parallelDistanceNM);
 };
 
@@ -80,7 +80,7 @@ void weightedXYDistanceAPI::init(arma::mat& x, arma::mat& y, arma::vec& weights)
 void weightedXYDistanceAPI::set_distance(arma::vec& weights) {
   weightedDistance dist;
   dist.set_parameters(weights);
-  this->dist_ = std::make_shared<weightedDistance>(dist);
+  dist_ = std::make_shared<weightedDistance>(dist);
 };
 
 
@@ -104,7 +104,7 @@ void rfProximityDistanceAPI::init(arma::mat& x) {
 void rfProximityDistanceAPI::set_distance(arma::mat& x) {
   rangerProximity dist;
   dist.set_parameters(x.n_cols);
-  this->dist_ = std::make_shared<rangerProximity>(dist);
+  dist_ = std::make_shared<rangerProximity>(dist);
 }
 
 
@@ -120,7 +120,7 @@ void rfProximityXYDistanceAPI::calc(arma::mat& x, arma::mat& y) {
   int nrow = x.n_rows;
   arma::mat output(nrow, y.n_rows);
   output_ = output;
-  parallelDistanceNM parallelDistanceNM(x, y, this->dist_, nrow, output_);
+  parallelDistanceNM parallelDistanceNM(x, y, dist_, nrow, output_);
   parallelFor(0, nrow, parallelDistanceNM);
 };
 
@@ -139,14 +139,14 @@ void rfDepthDistanceAPI::init(arma::mat& xNodeIDs, arma::umat& terminalNodeIDs) 
 void rfDepthDistanceAPI::set_distance(RfDistContainer& nodeDists) {
   rfDepthDistance dist;
   dist.set_parameters(nodeDists);
-  this->dist_ = std::make_shared<rfDepthDistance>(dist);
+  dist_ = std::make_shared<rfDepthDistance>(dist);
 }
 
 void rfDepthDistanceAPI::calc(arma::mat& xNodeIDs) {
   int nrow = xNodeIDs.n_rows;
   arma::vec output(nrow * (nrow - 1) / 2);
   output_ = output;
-  parallelDistance parallelDistance(xNodeIDs, this->dist_, nrow, output_);
+  parallelDistance parallelDistance(xNodeIDs, dist_, nrow, output_);
   parallelFor(0, nrow, parallelDistance);
 };
 
@@ -166,6 +166,6 @@ void rfDepthXYDistanceAPI::calc(arma::mat& xNodeIDs, arma::mat& yNodeIDs) {
   int nrow = xNodeIDs.n_rows;
   arma::mat output(nrow, yNodeIDs.n_rows);
   output_ = output;
-  parallelDistanceNM parallelDistanceNM(xNodeIDs, yNodeIDs, this->dist_, nrow, output_);
+  parallelDistanceNM parallelDistanceNM(xNodeIDs, yNodeIDs, dist_, nrow, output_);
   parallelFor(0, nrow, parallelDistanceNM);
 };
