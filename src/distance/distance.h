@@ -113,11 +113,11 @@ public:
       }
       if (d > 0.0) {
         // TODO: set trafo
-        sum += 1. / d;
+        sum += d;
         ++nTree;
       }
     }
-    return sum * 1. / nTree;
+    return sum; // * 1. / nTree
   };
   
   void set_parameters(RfDistContainer nodeDist) {
