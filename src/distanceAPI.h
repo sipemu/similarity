@@ -33,10 +33,10 @@ protected:
  */
 class weightedDistanceAPI : public distanceAPI {
 public:
-  void init(arma::mat& x, arma::vec& weights);
+  void init(arma::mat& x, arma::rowvec& weights);
   
 protected:
-  virtual void set_distance(arma::vec& weights);
+  virtual void set_distance(arma::rowvec& weights);
 };
 
 
@@ -59,11 +59,12 @@ protected:
  */
 class weightedXYDistanceAPI : public xyDistanceAPI {
 public:
-  void init(arma::mat& x, arma::mat& y, arma::vec& weights);
+  void init(arma::mat& x, arma::mat& y, arma::rowvec& weights);
   arma::mat get() {return output_;};
   
 protected:
-  virtual void set_distance(arma::vec& weights);
+  void calc(arma::mat& x, arma::mat& y);
+  virtual void set_distance(arma::rowvec& weights);
   
   arma::mat output_;
 };

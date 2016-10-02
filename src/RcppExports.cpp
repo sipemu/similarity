@@ -20,7 +20,7 @@ BEGIN_RCPP
 END_RCPP
 }
 // distanceXYCPP
-arma::vec distanceXYCPP(arma::mat& x, arma::mat& y, std::string method, int p);
+arma::mat distanceXYCPP(arma::mat& x, arma::mat& y, std::string method, int p);
 RcppExport SEXP Similarity_distanceXYCPP(SEXP xSEXP, SEXP ySEXP, SEXP methodSEXP, SEXP pSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
@@ -34,26 +34,26 @@ BEGIN_RCPP
 END_RCPP
 }
 // wDistanceCPP
-arma::vec wDistanceCPP(arma::mat& x, arma::vec& weights);
+arma::vec wDistanceCPP(arma::mat& x, arma::rowvec& weights);
 RcppExport SEXP Similarity_wDistanceCPP(SEXP xSEXP, SEXP weightsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< arma::mat& >::type x(xSEXP);
-    Rcpp::traits::input_parameter< arma::vec& >::type weights(weightsSEXP);
+    Rcpp::traits::input_parameter< arma::rowvec& >::type weights(weightsSEXP);
     rcpp_result_gen = Rcpp::wrap(wDistanceCPP(x, weights));
     return rcpp_result_gen;
 END_RCPP
 }
 // wDistanceXYCPP
-arma::vec wDistanceXYCPP(arma::mat& x, arma::mat& y, arma::vec& weights);
+arma::mat wDistanceXYCPP(arma::mat& x, arma::mat& y, arma::rowvec& weights);
 RcppExport SEXP Similarity_wDistanceXYCPP(SEXP xSEXP, SEXP ySEXP, SEXP weightsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< arma::mat& >::type x(xSEXP);
     Rcpp::traits::input_parameter< arma::mat& >::type y(ySEXP);
-    Rcpp::traits::input_parameter< arma::vec& >::type weights(weightsSEXP);
+    Rcpp::traits::input_parameter< arma::rowvec& >::type weights(weightsSEXP);
     rcpp_result_gen = Rcpp::wrap(wDistanceXYCPP(x, y, weights));
     return rcpp_result_gen;
 END_RCPP

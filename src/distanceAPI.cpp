@@ -30,8 +30,7 @@ void distanceAPI::set_distance(std::string distMethod, std::size_t p) {
 
 void distanceAPI::calc(arma::mat& x) {
   int nrow = x.n_rows;
-  arma::vec output(nrow * (nrow - 1) / 2);
-  output_ = output;
+  output_ = arma::vec(nrow * (nrow - 1) / 2);
   parallelDistance parallelDistance(x, dist_, nrow, output_);
   parallelFor(0, nrow, parallelDistance);
 };
@@ -40,12 +39,12 @@ void distanceAPI::calc(arma::mat& x) {
 /**
  * Weighted Distance Calculation
  */
-void weightedDistanceAPI::init(arma::mat& x, arma::vec& weights) {
+void weightedDistanceAPI::init(arma::mat& x, arma::rowvec& weights) {
   this->set_distance(weights);
   this->calc(x);
 }
 
-void weightedDistanceAPI::set_distance(arma::vec& weights) {
+void weightedDistanceAPI::set_distance(arma::rowvec& weights) {
   weightedDistance dist;
   dist.set_parameters(weights);
   dist_ = std::make_shared<weightedDistance>(dist);
@@ -72,17 +71,24 @@ void xyDistanceAPI::calc(arma::mat& x, arma::mat& y) {
 /**
  * Weighted XY Distance Calculation
  */
-void weightedXYDistanceAPI::init(arma::mat& x, arma::mat& y, arma::vec& weights) {
+void weightedXYDistanceAPI::init(arma::mat& x, arma::mat& y, arma::rowvec& weights) {
   this->set_distance(weights);
   this->calc(x, y);
 }
 
-void weightedXYDistanceAPI::set_distance(arma::vec& weights) {
+void weightedXYDistanceAPI::set_distance(arma::rowvec& weights) {
   weightedDistance dist;
   dist.set_parameters(weights);
   dist_ = std::make_shared<weightedDistance>(dist);
 };
 
+void weightedXYDistanceAPI::calc(arma::mat& x, arma::mat& y) {
+  int nrow = x.n_rows;
+  arma::mat output(nrow, y.n_rows);
+  output_= output;
+  parallelDistanceNM parallelDistanceNM(x, y, dist_, nrow, output_);
+  parallelFor(0, nrow, parallelDistanceNM);
+};
 
 /**
  * RandomForests Terminal Node Distance

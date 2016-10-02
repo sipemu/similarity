@@ -10,7 +10,7 @@ class distance {
 public:
   distance() {};
   
-  virtual double calc_distance(arma::rowvec& x, arma::rowvec& y) const {
+  virtual double calc_distance(const arma::subview_row<double>& x, const arma::subview_row<double>& y) const {
     return 0.0;
   };
   
@@ -20,11 +20,11 @@ public:
 // weighted distance
 class weightedDistance : public distance {
 public:
-  virtual double calc_distance(arma::rowvec& x, arma::rowvec& y) const {
-    return arma::accu(weights_ % (x - y));
+  virtual double calc_distance(const arma::subview_row<double>& x, const arma::subview_row<double>& y) const {
+    return std::abs(arma::sum(weights_ % (x - y)));
   };
   
-  void set_parameters(arma::rowvec weights) {
+  void set_parameters(arma::rowvec& weights) {
     weights_ = weights;
   };
 private:
@@ -34,7 +34,7 @@ private:
 // euclidian distance
 class euclidianDistance : public distance {
 public:
-  virtual double calc_distance(arma::rowvec& x, arma::rowvec& y) const {
+  virtual double calc_distance(const arma::subview_row<double>& x, const arma::subview_row<double>& y) const {
     return std::sqrt(arma::sum(arma::square((x - y))));
   };
   
@@ -45,7 +45,7 @@ public:
 // minkowski distance
 class minkowskiDistance : public distance {
 public:
-  virtual double calc_distance(arma::rowvec& x, arma::rowvec& y) const {
+  virtual double calc_distance(const arma::subview_row<double>& x, const arma::subview_row<double>& y) const {
     return std::pow(arma::sum(arma::abs(arma::pow(x - y, p_))), 1. / p_);
   };
   
@@ -59,7 +59,7 @@ private:
 // manhattan distance
 class manhattanDistance : public distance {
 public:
-  virtual double calc_distance(arma::rowvec& x, arma::rowvec& y) const {
+  virtual double calc_distance(const arma::subview_row<double>& x, const arma::subview_row<double>& y) const {
     return arma::sum(arma::abs(x - y));
   };
   void set_parameters() {
@@ -69,19 +69,18 @@ public:
 // maximum distance
 class maximumDistance : public distance {
 public:
-  virtual double calc_distance(arma::rowvec& x, arma::rowvec& y) const {
+  virtual double calc_distance(arma::subview_row<double>& x, arma::subview_row<double>& y) const {
     return arma::max(arma::abs(x - y));
   };
-  void set_parameters() {
-  };
+  void set_parameters() {};
 };
 
 // random forest proximity
 class rangerProximity : public distance {
 public:
-  virtual double calc_distance(arma::rowvec& x, arma::rowvec& y) const {
+  virtual double calc_distance(const arma::subview_row<double>& x, const arma::subview_row<double>& y) const {
     int similarity = 0;
-    for (auto i=0;i<x.size();++i) {
+    for (auto i=0;i<x.n_elem;++i) {
       if (x(i) == y(i)) {
         ++similarity;
       }
@@ -99,7 +98,7 @@ private:
 // random forest depth distance
 class rfDepthDistance : public distance {
 public:
-  virtual double calc_distance(arma::rowvec& x, arma::rowvec& y) const {
+  virtual double calc_distance(const arma::subview_row<double>& x, const arma::subview_row<double>& y) const {
     double sum = 0.0;
     double d = 0.0;
     auto nTree = 0;

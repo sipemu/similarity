@@ -31,10 +31,8 @@ struct parallelDistance : public RcppParallel::Worker {
   
   void operator() (std::size_t begin, std::size_t end) {
     for (auto i=begin;i<end;++i) {
-      arma::rowvec x = input_.row(i);
       for (auto j=i+1;j<nrow_;++j) {
-        arma::rowvec y = input_.row(j);
-        output_((2 * i * nrow_ - i * i + 2 * j - 3 * i - 2) / 2) = dist_->calc_distance(x, y);
+        output_((2 * i * nrow_ - i * i + 2 * j - 3 * i - 2) / 2) = dist_->calc_distance(input_.row(i), input_.row(j));
       }
     }
   }
@@ -59,10 +57,8 @@ struct parallelDistanceNM : public RcppParallel::Worker {
   void operator() (std::size_t begin, std::size_t end) {
     std::size_t nrow2 = inputY_.n_rows;
     for (auto i=begin;i<end;++i) {
-      arma::rowvec x = inputX_.row(i);
-      for (auto j=1;j<nrow2;++j) {
-        arma::rowvec y = inputX_.row(j);
-        output_(i, j) = dist_->calc_distance(x, y);
+      for (auto j=0;j<nrow2;++j) {
+        output_(i, j) = dist_->calc_distance(inputX_.row(i), inputY_.row(j));
       }
     }
   }
@@ -84,9 +80,7 @@ struct parallelMatrixNorm : public RcppParallel::Worker {
   
   void operator() (std::size_t begin, std::size_t end) {
     for (auto i=begin;i<end;++i) {
-      arma::rowvec x = inputX_.row(i);
-      arma::rowvec y = inputX_.row(i);
-      output_(i) = dist_->calc_distance(x, y);
+      output_(i) = dist_->calc_distance(inputX_.row(i), inputX_.row(i));
     }
   }
 };

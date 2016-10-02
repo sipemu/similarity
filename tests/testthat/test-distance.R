@@ -1,10 +1,10 @@
-testthat::context("Distance")
+Ïtestthat::context("Distance")
 
 testthat::test_that("Euclidian", {
   set.seed((1234))
-  x <- matrix(rnorm(100), 10)
-  d1 <- distance(x, method = "euclidian")
-  d2 <- dist(x, method = "euclidian")
+  x <- matrix(rnorm(100), ncol = 10)
+  system.time(d1 <- distance(x, method = "euclidian"))
+  system.time(d2 <- dist(x, method = "euclidian"))
   testthat::expect_equal(as.matrix(d1), as.matrix(d2))
 })
 

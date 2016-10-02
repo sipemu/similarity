@@ -14,21 +14,21 @@ arma::vec distanceCPP(arma::mat& x, std::string method="euclidian", int p = 2) {
 }
 
 // [[Rcpp::export]]
-arma::vec distanceXYCPP(arma::mat& x, arma::mat& y, std::string method="euclidian", int p = 2) {
+arma::mat distanceXYCPP(arma::mat& x, arma::mat& y, std::string method="euclidian", int p = 2) {
   xyDistanceAPI dist;
   dist.init(x, y, method, p);
   return dist.get();
 }
 
 // [[Rcpp::export]]
-arma::vec wDistanceCPP(arma::mat& x, arma::vec& weights) {
+arma::vec wDistanceCPP(arma::mat& x, arma::rowvec& weights) {
   weightedDistanceAPI dist;
   dist.init(x, weights);
   return dist.get();
 }
 
 // [[Rcpp::export]]
-arma::vec wDistanceXYCPP(arma::mat& x, arma::mat& y, arma::vec& weights) {
+arma::mat wDistanceXYCPP(arma::mat& x, arma::mat& y, arma::rowvec& weights) {
   weightedXYDistanceAPI dist;
   dist.init(x, y, weights);
   return dist.get();
