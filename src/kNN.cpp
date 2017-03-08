@@ -5,11 +5,11 @@
 Rcpp::List weighted_knn(arma::mat x,
                         arma::mat query,
                         arma::vec weights,
-                        const int sortDirection = 0,
-                        const int k = 1) {
+                        const char sortDirection,
+                        const std::size_t k) {
   
-  int nVars = weights.size();
-  int nQuery = query.n_rows;
+  std::size_t nVars = weights.size();
+  std::size_t nQuery = query.n_rows;
   
   arma::mat retDist(nQuery, k);
   arma::umat retOrder(nQuery, k);
@@ -18,8 +18,8 @@ Rcpp::List weighted_knn(arma::mat x,
   tmpDist.fill(0);
   arma::uvec order(x.n_rows);
   
-  for (auto i=0;i<nQuery;++i) {
-    for (auto j=0;j <nVars;++j) {
+  for (std::size_t i=0;i<nQuery;++i) {
+    for (std::size_t j=0;j <nVars;++j) {
       tmpDist = tmpDist + abs(weights(j) * (x.col(j) - query(i, j)));
     }
     order = arma::sort_index(tmpDist, sortDirection);

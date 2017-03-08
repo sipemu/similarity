@@ -32,11 +32,11 @@ public:
   
   // calculate terminal node distance for each tree
   RfDistContainer nodeDistance() {
-    auto nTrees = treeIndex_.size() - 1;
+    std::size_t nTrees = treeIndex_.size() - 1;
     RfDistContainer rfDist;
     rfDist.setNTree(nTrees);
     int d = 0;
-    for (auto t=0;t<nTrees;++t) {
+    for (std::size_t t=0;t<nTrees;++t) {
       hashVec hv = hp_[t+1];
       for (auto it1 = hv.cbegin();it1!=hv.cend();++it1) {
         auto itTemp = it1;
@@ -53,13 +53,13 @@ public:
 private:
   // get the tree indices
   void treeIndex() {
-    auto nTrees = nodeIDs_.col(0)(nodeIDs_.n_rows - 1); 
+    std::size_t nTrees = nodeIDs_.col(0)(nodeIDs_.n_rows - 1); 
     // tree index starts from 1, so this vector has length n trees + 1
     arma::uvec treeIndex(nTrees + 1);
     treeIndex.fill(0);
-    auto tmpTree = 1;
-    int nrow = nodeIDs_.n_rows;
-    for (auto i=0;i<nrow;++i) {
+    std::size_t tmpTree = 1;
+    std::size_t nrow = nodeIDs_.n_rows;
+    for (std::size_t i=0;i<nrow;++i) {
       if (tmpTree != nodeIDs_.col(0)(i)) {
         treeIndex(tmpTree) = i;
         ++tmpTree;
@@ -72,9 +72,9 @@ private:
   // get indices of terminal nodes for all trees
   hashVec terminalNodes() {
     hashVec treeTerminalNodes;
-    for (auto t=0;t<treeIndex_.size()-1;++t) {
+    for (std::size_t t=0;t<treeIndex_.size()-1;++t) {
       Rcpp::NumericVector ind;
-      for (auto i=treeIndex_(t);i<treeIndex_(t+1);++i) {
+      for (std::size_t i=treeIndex_(t);i<treeIndex_(t+1);++i) {
         if (nodeIDs_.col(2)(i) == 0) {
           ind.push_back(i - treeIndex_(t) + 1);
         }
@@ -87,9 +87,9 @@ private:
   // transform matrix to hashmap for all trees
   treeHashMap nodeIdToHashMap() {
     treeHashMap treeNodes;
-    for (auto t=0;t<treeIndex_.size()-1;++t) {
+    for (std::size_t t=0;t<treeIndex_.size()-1;++t) {
       hashMap nodes;
-      for (auto i=treeIndex_(t);i<treeIndex_(t+1);++i) {
+      for (std::size_t i=treeIndex_(t);i<treeIndex_(t+1);++i) {
         if (nodeIDs_(i, 2) != 0) {
           nodes[nodeIDs_(i, 2)] = nodeIDs_(i, 1);
         }
@@ -108,8 +108,8 @@ private:
     treeHashMap nodes = this->nodeIdToHashMap();
     // get terminal nodes
     hashVec tNodes = this->terminalNodes();
-    auto nTrees = treeIndex_.size() - 1;
-    for (auto t=0;t<nTrees;++t) {
+    std::size_t nTrees = treeIndex_.size() - 1;
+    for (std::size_t t=0;t<nTrees;++t) {
       hashVec hv;
       // get for each terminal node the path to root
       for (auto tn : tNodes[t + 1]) {
@@ -135,11 +135,11 @@ private:
   };
   
   // calculate the number of edges between two terminal nodes
-  int terminalNodeDistance(arma::uvec path1, arma::uvec path2) {
-    int n = path1.size();
-    int m = path2.size();
-    for (auto i=0;i<n;++i) {
-      for (auto j=0;j<m;++j) {
+  std::size_t terminalNodeDistance(arma::uvec path1, arma::uvec path2) {
+    std::size_t n = path1.size();
+    std::size_t m = path2.size();
+    for (std::size_t i=0;i<n;++i) {
+      for (std::size_t j=0;j<m;++j) {
         if (path1(i) == path2(j)) {
           return i + j;
         }

@@ -6,7 +6,7 @@
 #' 
 #' @export
 orderCPP <- function(x, decreasing=F, k=0) {
-  sortDirection <- ifelse(decreasing, 1, 0)
+  sortDirection <- ifelse(decreasing, "d", "a")
   if (is(x, "matrix")) {
     if (k > nrow(x))
       k <- 0

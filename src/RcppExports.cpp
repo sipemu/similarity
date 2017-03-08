@@ -118,7 +118,7 @@ BEGIN_RCPP
 END_RCPP
 }
 // weighted_knn
-Rcpp::List weighted_knn(arma::mat x, arma::mat query, arma::vec weights, const int sortDirection, const int k);
+Rcpp::List weighted_knn(arma::mat x, arma::mat query, arma::vec weights, const char sortDirection, const std::size_t k);
 RcppExport SEXP Similarity_weighted_knn(SEXP xSEXP, SEXP querySEXP, SEXP weightsSEXP, SEXP sortDirectionSEXP, SEXP kSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
@@ -126,35 +126,35 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< arma::mat >::type x(xSEXP);
     Rcpp::traits::input_parameter< arma::mat >::type query(querySEXP);
     Rcpp::traits::input_parameter< arma::vec >::type weights(weightsSEXP);
-    Rcpp::traits::input_parameter< const int >::type sortDirection(sortDirectionSEXP);
-    Rcpp::traits::input_parameter< const int >::type k(kSEXP);
+    Rcpp::traits::input_parameter< const char >::type sortDirection(sortDirectionSEXP);
+    Rcpp::traits::input_parameter< const std::size_t >::type k(kSEXP);
     rcpp_result_gen = Rcpp::wrap(weighted_knn(x, query, weights, sortDirection, k));
     return rcpp_result_gen;
 END_RCPP
 }
 // orderMatrixCPP
-arma::umat orderMatrixCPP(arma::mat& x, int sortDirection, int k);
+arma::umat orderMatrixCPP(arma::mat& x, char sortDirection, int k);
 RcppExport SEXP Similarity_orderMatrixCPP(SEXP xSEXP, SEXP sortDirectionSEXP, SEXP kSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< arma::mat& >::type x(xSEXP);
-    Rcpp::traits::input_parameter< int >::type sortDirection(sortDirectionSEXP);
+    Rcpp::traits::input_parameter< char >::type sortDirection(sortDirectionSEXP);
     Rcpp::traits::input_parameter< int >::type k(kSEXP);
     rcpp_result_gen = Rcpp::wrap(orderMatrixCPP(x, sortDirection, k));
     return rcpp_result_gen;
 END_RCPP
 }
 // orderVectorCPP
-arma::uvec orderVectorCPP(arma::vec x, int sort_direction, int k);
-RcppExport SEXP Similarity_orderVectorCPP(SEXP xSEXP, SEXP sort_directionSEXP, SEXP kSEXP) {
+arma::uvec orderVectorCPP(arma::vec x, char sortDirection, int k);
+RcppExport SEXP Similarity_orderVectorCPP(SEXP xSEXP, SEXP sortDirectionSEXP, SEXP kSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< arma::vec >::type x(xSEXP);
-    Rcpp::traits::input_parameter< int >::type sort_direction(sort_directionSEXP);
+    Rcpp::traits::input_parameter< char >::type sortDirection(sortDirectionSEXP);
     Rcpp::traits::input_parameter< int >::type k(kSEXP);
-    rcpp_result_gen = Rcpp::wrap(orderVectorCPP(x, sort_direction, k));
+    rcpp_result_gen = Rcpp::wrap(orderVectorCPP(x, sortDirection, k));
     return rcpp_result_gen;
 END_RCPP
 }

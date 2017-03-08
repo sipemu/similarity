@@ -37,16 +37,16 @@ depthMatrixRangerCPPXY <- function(xNodeIDs, yNodeIDs, terminalNodeIDs) {
     .Call('Similarity_depthMatrixRangerCPPXY', PACKAGE = 'Similarity', xNodeIDs, yNodeIDs, terminalNodeIDs)
 }
 
-weighted_knn <- function(x, query, weights, sortDirection = 0L, k = 1L) {
+weighted_knn <- function(x, query, weights, sortDirection, k) {
     .Call('Similarity_weighted_knn', PACKAGE = 'Similarity', x, query, weights, sortDirection, k)
 }
 
-orderMatrixCPP <- function(x, sortDirection = 0L, k = 5L) {
+orderMatrixCPP <- function(x, sortDirection, k = 5L) {
     .Call('Similarity_orderMatrixCPP', PACKAGE = 'Similarity', x, sortDirection, k)
 }
 
-orderVectorCPP <- function(x, sort_direction = 0L, k = 0L) {
-    .Call('Similarity_orderVectorCPP', PACKAGE = 'Similarity', x, sort_direction, k)
+orderVectorCPP <- function(x, sortDirection, k = 0L) {
+    .Call('Similarity_orderVectorCPP', PACKAGE = 'Similarity', x, sortDirection, k)
 }
 
 terminalNodeIDRanger <- function(x, childNodes1, childNodes2, splitValues, splitVarIds) {
