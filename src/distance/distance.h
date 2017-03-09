@@ -69,7 +69,7 @@ public:
 // maximum distance
 class maximumDistance : public distance {
 public:
-  virtual double calc_distance(arma::subview_row<double>& x, arma::subview_row<double>& y) const {
+  virtual double calc_distance(const arma::subview_row<double>& x, const arma::subview_row<double>& y) const {
     return arma::max(arma::abs(x - y));
   };
   void set_parameters() {};
