@@ -11,7 +11,7 @@ distance(x, y = NULL, method = "euclidian", p = 2)
 
 \item{y}{a second new dataset}
 
-\item{method}{a distance method (available are: euclidian, manhattan, and minkowski)}
+\item{method}{a distance method (available are: euclidian, manhattan, maximum, minkowski, and cosine)}
 
 \item{p}{parameter for Minkowski distance}
 }
@@ -23,10 +23,7 @@ Distance calculation
 }
 \examples{
 \dontrun{
-require(ranger)
-rf <- ranger(Species ~ ., data = iris, num.trees = 5, write.forest = TRUE)
-terminalNodeIdsRanger(iris[, -5], rf)
+distance(iris[, -5])
 }
 
 }
-

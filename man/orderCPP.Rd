@@ -16,4 +16,3 @@ orderCPP(x, decreasing = F, k = 0)
 \description{
 C++ Version for ordering a matrix or an vector
 }
-

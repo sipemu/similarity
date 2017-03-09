@@ -24,4 +24,3 @@ terminalNodeDistance(rf)
 }
 
 }
-

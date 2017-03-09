@@ -34,4 +34,3 @@ proximityMatrixRanger(x = iris[learn, -5], y = iris[test, -5], rf = rf)
 }
 
 }
-

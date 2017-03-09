@@ -2,21 +2,19 @@
 #'
 #' @param x a new dataset
 #' @param y a second new dataset
-#' @param method a distance method (available are: euclidian, manhattan, and minkowski)
+#' @param method a distance method (available are: euclidian, manhattan, maximum, minkowski, and cosine)
 #' @param p parameter for Minkowski distance
 #' 
 #' @return a \code{dist} or \code{matrix} object
 #'         
 #' @examples
 #' \dontrun{
-#' require(ranger)
-#' rf <- ranger(Species ~ ., data = iris, num.trees = 5, write.forest = TRUE)
-#' terminalNodeIdsRanger(iris[, -5], rf)
+#' distance(iris[, -5])
 #' }
 #' 
 #' @export
 distance <- function(x, y=NULL, method="euclidian", p=2) {
-  method <- match.arg(method, c("euclidian", "manhattan", "minkowski", "maximum"))
+  method <- match.arg(method, c("euclidian", "manhattan", "minkowski", "maximum", "cosine"))
   if (is.null(y)) {
     d <- distanceCPP(as.matrix(x), method, p) 
     return(asDistObject(d, nrow(x), method))

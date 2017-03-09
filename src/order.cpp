@@ -10,12 +10,12 @@ using namespace Rcpp;
 
 struct parallelOrderMatrix : public Worker {
   const arma::mat& x_;
-  const char sortDirection_;
+  const int sortDirection_;
   const std::size_t k_;
   arma::umat& output_;
   parallelOrderMatrix(
     const arma::mat& x,
-    const char sortDirection,
+    const int sortDirection,
     const std::size_t k,
     arma::umat& output
   ) : x_(x), sortDirection_(sortDirection), k_(k), output_(output) {}
@@ -31,7 +31,7 @@ struct parallelOrderMatrix : public Worker {
   }
 };
 
-arma::umat orderMatrix(arma::mat& x, char sortDirection, int k) {
+arma::umat orderMatrix(arma::mat& x, const int sortDirection, const int k) {
   int nCols = x.n_cols;
   int nRows = k;
   if (k == 0) {
@@ -46,7 +46,7 @@ arma::umat orderMatrix(arma::mat& x, char sortDirection, int k) {
 
 #else
 
-arma::umat orderMatrix(arma::mat& x, char sortDirection, int k) {
+arma::umat orderMatrix(arma::mat& x, const int sortDirection, const int k) {
   int nCols = x.n_cols;
   int nRows = k;
   if (k == 0) {
@@ -66,12 +66,12 @@ arma::umat orderMatrix(arma::mat& x, char sortDirection, int k) {
 #endif
 
 // [[Rcpp::export]]
-arma::umat orderMatrixCPP(arma::mat& x, char sortDirection, int k = 5) {
+arma::umat orderMatrixCPP(arma::mat& x, const int sortDirection, int k = 5) {
   return orderMatrix(x, sortDirection, k);
 }
 
 // [[Rcpp::export]]
-arma::uvec orderVectorCPP(arma::vec x, char sortDirection, int k = 0) {
+arma::uvec orderVectorCPP(arma::vec x, const int sortDirection, int k = 0) {
   arma::uvec order = arma::sort_index(x, sortDirection) + 1;
   if (k > 0)
     order.resize(k);

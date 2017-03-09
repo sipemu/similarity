@@ -22,6 +22,10 @@ void distanceAPI::set_distance(std::string distMethod, std::size_t p) {
     maximumDistance dist;
     dist.set_parameters();
     dist_ = std::make_shared<maximumDistance>(dist);
+  } else if (distMethod.compare("cosine") == 0) {
+    cosineDistance dist;
+    dist.set_parameters();
+    dist_ = std::make_shared<cosineDistance>(dist);
   } else {
     distance dist;
     dist_ = std::make_shared<distance>(dist);

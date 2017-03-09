@@ -133,26 +133,26 @@ BEGIN_RCPP
 END_RCPP
 }
 // orderMatrixCPP
-arma::umat orderMatrixCPP(arma::mat& x, char sortDirection, int k);
+arma::umat orderMatrixCPP(arma::mat& x, const int sortDirection, int k);
 RcppExport SEXP Similarity_orderMatrixCPP(SEXP xSEXP, SEXP sortDirectionSEXP, SEXP kSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< arma::mat& >::type x(xSEXP);
-    Rcpp::traits::input_parameter< char >::type sortDirection(sortDirectionSEXP);
+    Rcpp::traits::input_parameter< const int >::type sortDirection(sortDirectionSEXP);
     Rcpp::traits::input_parameter< int >::type k(kSEXP);
     rcpp_result_gen = Rcpp::wrap(orderMatrixCPP(x, sortDirection, k));
     return rcpp_result_gen;
 END_RCPP
 }
 // orderVectorCPP
-arma::uvec orderVectorCPP(arma::vec x, char sortDirection, int k);
+arma::uvec orderVectorCPP(arma::vec x, const int sortDirection, int k);
 RcppExport SEXP Similarity_orderVectorCPP(SEXP xSEXP, SEXP sortDirectionSEXP, SEXP kSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< arma::vec >::type x(xSEXP);
-    Rcpp::traits::input_parameter< char >::type sortDirection(sortDirectionSEXP);
+    Rcpp::traits::input_parameter< const int >::type sortDirection(sortDirectionSEXP);
     Rcpp::traits::input_parameter< int >::type k(kSEXP);
     rcpp_result_gen = Rcpp::wrap(orderVectorCPP(x, sortDirection, k));
     return rcpp_result_gen;

@@ -8,4 +8,3 @@
 \description{
 similarity is a package for similarity calculation
 }
-

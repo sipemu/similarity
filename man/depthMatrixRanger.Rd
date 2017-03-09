@@ -24,4 +24,3 @@ depthMatrixRanger(x=iris[, -5], rf=rf)
 }
 
 }
-

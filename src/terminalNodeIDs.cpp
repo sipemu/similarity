@@ -39,7 +39,7 @@ struct parallelTerminalNodes : public RcppParallel::Worker {
           nodeId = childNodes2_(nodeId - 1) + 1;
         }
       }
-      output_(i) = nodeId;
+      output_(i) = nodeId - 1;
     }
   }
 };
