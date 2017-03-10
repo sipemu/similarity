@@ -80,7 +80,11 @@ public:
 class cosineDistance : public distance {
 public:
   virtual double calc_distance(const arma::subview_row<double>& x, const arma::subview_row<double>& y) const {
-    return arma::sum(x % y) / (std::sqrt(arma::sum(arma::square(x))) * std::sqrt(arma::sum(arma::square(y))));
+    double denom = std::sqrt(arma::sum(arma::square(x))) * std::sqrt(arma::sum(arma::square(y)));
+    if (denom == 0)
+      return 0.0;
+    else
+      return arma::sum(x % y) / denom;
   };
   void set_parameters() {};
 };
