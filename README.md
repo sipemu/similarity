@@ -3,7 +3,7 @@
 
 # Distance and Similarity Measures
 
-http://sipemu.github.io/similarity/
+http://sipemu.github.io/case-based-reasoning/
 
 ### Literatur
 
