@@ -177,4 +177,44 @@ remote: Total 3 (delta 1), reused 1 (delta 1), pack-reused 2[0K
 KONFLIKT (Inhalt): Merge-Konflikt in README.md[0K
 Automatischer Merge fehlgeschlagen; beheben Sie die Konflikte und committen Sie dann [0Kd
 as Ergebnis.[0K
-smueller@DESKTOP-SAH375T:/mnt/d/Programmierung/Github/OCDM/similarity$[0K[72G[?25h[?25lsmueller@DESKTOP-SAH375T:/mnt/d/Programmierung/Github/OCDM/similarity$ g[0K[?25h[?25li[0K[73G[?25h[74G[?25lsmueller@DESKTOP-SAH375T:/mnt/d/Programmierung/Github/OCDM/similarity$ git[0K[?25h[76G[?25lsmueller@DESKTOP-SAH375T:/mnt/d/Programmierung/Github/OCDM/similarity$ git a[0K[?25hd[0Kd[0K[80G[?25lsmueller@DESKTOP-SAH375T:/mnt/d/Programmierung/Github/OCDM/similarity$ git add .[0K[80G[?25h[81G
+smueller@DESKTOP-SAH375T:/mnt/d/Programmierung/Github/OCDM/similarity$[0K[72G[?25h[?25lsmueller@DESKTOP-SAH375T:/mnt/d/Programmierung/Github/OCDM/similarity$ g[0K[?25h[?25li[0K[73G[?25h[74G[?25lsmueller@DESKTOP-SAH375T:/mnt/d/Programmierung/Github/OCDM/similarity$ git[0K[?25h[76G[?25lsmueller@DESKTOP-SAH375T:/mnt/d/Programmierung/Github/OCDM/similarity$ git a[0K[?25hd[0Kd[0K[80G[?25lsmueller@DESKTOP-SAH375T:/mnt/d/Programmierung/Github/OCDM/similarity$ git add .[0K[80G[?25h[81G[?25l
+[0K[?25hsmueller@DESKTOP-SAH375T:/mnt/d/Programmierung/Github/OCDM/similarity$[0K[72G[?25lsmueller@DESKTOP-SAH375T:/mnt/d/Programmierung/Github/OCDM/similarity$ g[0K[?25hi[0Kt[0K[76G[?25lsmueller@DESKTOP-SAH375T:/mnt/d/Programmierung/Github/OCDM/similarity$ git c[0K[?25h[?25lo[0K[77G[?25h[78G[?25lsmueller@DESKTOP-SAH375T:/mnt/d/Programmierung/Github/OCDM/similarity$ git com[0K[?25hm[0K[?25li[0K[80G[?25h[81G[?25lsmueller@DESKTOP-SAH375T:/mnt/d/Programmierung/Github/OCDM/similarity$ git commit[0K[?25h[83G[?25lsmueller@DESKTOP-SAH375T:/mnt/d/Programmierung/Github/OCDM/similarity$ git commit -[0K[?25hm[0K[86G[?25lsmueller@DESKTOP-SAH375T:/mnt/d/Programmierung/Github/OCDM/similarity$ git commit -m [0K"
+[0K[?25h"[0K[1G[?25lm"[0K[1G[?25h[2G[?25lme"[0K[3G[?25h[?25lmer"[0K[4G[?25h[?25lmerg"[0K[5G[?25h[?25lmerge"[0K[6G[?25h[?25l
+[0K[?25h[master b75e3f9] merge[0K[?25l
+smueller@DESKTOP-SAH375T:/mnt/d/Programmierung/Github/OCDM/similarity$[0K[72G[?25h[?25lsmueller@DESKTOP-SAH375T:/mnt/d/Programmierung/Github/OCDM/similarity$ g[0K[?25hi[0Kt[0K[76G[?25lsmueller@DESKTOP-SAH375T:/mnt/d/Programmierung/Github/OCDM/similarity$ git p[0K[?25hu[0Ks[0Kh[0K[?25l
+[0K[?25hwarning: 'push.default' ist nicht gesetzt; der implizit gesetzte Wert[0K[?25l
+wird in Git 2.0 von 'matching' nach 'simple' geändert. Um diese Meldung zu[0K
+unterdrücken und das aktuelle Verhalten nach Änderung des Standardwertes[0K
+beizubehalten, benutzen Sie:[0K
+[0K
+  git config --global push.default matching[0K
+[0K
+Um diese Meldung zu unterdrücken und das neue Verhalten jetzt zu übernehmen, benutzen[0K
+Sie:[0K
+[0K
+  git config --global push.default simple[0K
+[0K
+Wenn 'push.default' auf den Wert 'matching' gesetzt ist, werden lokale[0K
+Branches zu den Remote-Branches mit den selben Namen versendet.[0K
+[0K
+In Git 2.0 wird das Standardverhalten zu 'simple' geändert. Hierbei wird[0K
+der aktuelle Branch zu dem entsprechenden Remote-Branch versendet, den[0K
+'git pull' zur Aktualisierung des aktuellen Branches verwendet.[0K
+[0K
+Führen Sie 'git help config' aus und suchen Sie nach 'push.default' für[0K
+weitere Informationen.[0K
+(Der Modus 'simple' wurde in Git 1.7.11 eingeführt. Benutzen Sie den ähnlichen[0K
+Modus 'current' anstatt 'simple', falls Sie gelegentlich ältere Versionen von[0K
+Git benutzen.)[0K
+[0K
+[0K[?25hUsername for 'https://github.com':[0K[36G[?25lUsername for 'https://github.com': s[0K[?25hi[0Kp[0Ke[0Km[0Ku[0K[?25l
+Password for 'https://sipemu@github.com':[0K[43G[?25h[?25l
+[0K[?25hCounting objects: 198, done.[0K[?25l
+[0K[?25h[?25lDelta compression using up to 8 threads.[0K[1G[?25h[?25l
+Compressing objects:  57% (73/127)[0K[1G[?25hCompressing objects: 100% (127/127), done.[0K[?25l
+Writing objects:  35% (49/140)[0K[1G[?25h[?25lWriting objects:  72% (101/140)[0K[1G[?25h[?25lWriting objects:  80% (112/140)[0K[1G[?25hWriting objects: 100% (140/140), 520.75 KiB | 0 bytes/s, done.[0K[?25l
+Total 140 (delta 51), reused 2 (delta 0)[0K
+[0K[?25h[?25lremote: Resolving deltas:  39% (20/51)[0K[1G[?25hremote: Resolving deltas: 100% (51/51), completed with 32 local objects.[0K[?25l
+[0K[?25hTo https://github.com/sipemu/similarity.git[0K[?25l
+   84c265c..b75e3f9  master -> master[0K
+[0K[?25hsmueller@DESKTOP-SAH375T:/mnt/d/Programmierung/Github/OCDM/similarity$[0K[72G[?25lsmueller@DESKTOP-SAH375T:/mnt/d/Programmierung/Github/OCDM/similarity$ g[0K[?25h[?25li[0K[73G[?25h[74G[?25lsmueller@DESKTOP-SAH375T:/mnt/d/Programmierung/Github/OCDM/similarity$ git[0K[?25h[76G[?25lsmueller@DESKTOP-SAH375T:/mnt/d/Programmierung/Github/OCDM/similarity$ git a[0K[?25hd[0Kd[0K[80G[?25lsmueller@DESKTOP-SAH375T:/mnt/d/Programmierung/Github/OCDM/similarity$ git add .[0K[?25h
