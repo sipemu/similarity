@@ -3,6 +3,7 @@
 #' @name similarity
 #' @import Rcpp
 #' @import RcppArmadillo
+#' @import data.table
 #' @importFrom RcppParallel RcppParallelLibs
 #' @useDynLib Similarity
 NULL

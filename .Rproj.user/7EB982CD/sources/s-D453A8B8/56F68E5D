@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1489095346169.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2864276804",
+    "id" : "56F68E5D",
+    "lastKnownWriteTime" : 1476853641,
+    "last_content_update" : 1476853641,
+    "path" : "D:/Programmierung/Github/similarity/src/distanceAPI.h",
+    "project_path" : "src/distanceAPI.h",
+    "properties" : {
+    },
+    "relative_order" : 14,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "h"
+}

@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1519160411521.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "402921F0",
+    "lastKnownWriteTime" : 1519160415,
+    "last_content_update" : 1519160415761,
+    "path" : "D:/Programmierung/Github/OCDM/similarity/src/Makevars.win",
+    "project_path" : "src/Makevars.win",
+    "properties" : {
+        "cursorPosition" : "5,89",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 12,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "makefile"
+}

@@ -1,0 +1,10 @@
+{
+    "dialog-state" : {
+        "caseSensitive" : false,
+        "filePatterns" : [
+        ],
+        "path" : "D:/Programmierung/Github/similarity",
+        "query" : "ddot_",
+        "regex" : false
+    }
+}

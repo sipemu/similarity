@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1504606889803.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "1B627137",
+    "lastKnownWriteTime" : 1504606984,
+    "last_content_update" : 1504606984200,
+    "path" : "D:/Programmierung/Github/OCDM/similarity/src/ranger/rangerForest.h",
+    "project_path" : "src/ranger/rangerForest.h",
+    "properties" : {
+        "cursorPosition" : "0,24",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 7,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "h"
+}

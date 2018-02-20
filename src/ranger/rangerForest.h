@@ -1,3 +1,5 @@
+#define STRICT_R_HEADERS
+
 #ifndef RANGERFOREST_H
 #define RANGERFOREST_H
 

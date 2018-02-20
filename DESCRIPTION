@@ -11,14 +11,14 @@ LazyData: TRUE
 Depends:
   R (>= 3.1.2)
 Imports:
-  dplyr (>= 0.4.1),
-  Rcpp (>= 0.12.7),
+  dplyr (>= 0.7.0),
+  Rcpp (>= 0.12.13),
   RcppArmadillo,
-  RcppParallel,
+  RcppParallel (>= 4.3.20)
   magrittr
 Suggests:
   testthat
-LinkingTo: Rcpp (>= 0.12.7), RcppParallel, RcppArmadillo
+LinkingTo: Rcpp (>= 0.12.13), RcppParallel, RcppArmadillo
 SystemRequirements: C++11
 LazyLoad: yes
 ByteCompile: yes

@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "// [[Rcpp::depends(RcppParallel)]]\n// [[Rcpp::depends(RcppArmadillo)]]\n#include <RcppParallel.h>\n#include <RcppArmadillo.h>\n\n#if RCPP_PARALLEL_USE_TBB\n\n// get the terminal for each observation\nstruct parallelTerminalNodes : public RcppParallel::Worker {\n  const arma::mat data_;\n  const arma::vec childNodes1_;\n  const arma::vec childNodes2_;\n  const arma::vec splitValues_;\n  const arma::vec splitVarIds_;\n  arma::vec& output_;\n  \n  parallelTerminalNodes(\n    const arma::mat& data,\n    const arma::vec childNodes1,\n    const arma::vec childNodes2,\n    const arma::vec splitValues,\n    const arma::vec splitVarIds,\n    arma::vec& output\n  ) : data_(data), childNodes1_(childNodes1), childNodes2_(childNodes2), \n  splitValues_(splitValues), splitVarIds_(splitVarIds), output_(output)  {}\n  void operator() (std::size_t begin, std::size_t end) {\n    for (std::size_t i=begin; i<end; ++i) {\n      int nodeId = 1;\n      double value = 0;\n      while (true) {\n        if ((childNodes1_(nodeId - 1) == 0 && childNodes2_(nodeId - 1) == 0)) {\n          break;\n        }\n        int splitVarID = splitVarIds_(nodeId - 1);\n        value = data_(i, splitVarID - 1);\n        if (value <= splitValues_(nodeId - 1)) {\n          nodeId = childNodes1_(nodeId - 1) + 1;\n        } else {\n          nodeId = childNodes2_(nodeId - 1) + 1;\n        }\n      }\n      output_(i) = nodeId - 1;\n    }\n  }\n};\n\n#else\n\n// no single threathed implementation\n\n#endif\n\n// [[Rcpp::export]]\narma::vec terminalNodeIDRanger(arma::mat& x,\n                               arma::vec& childNodes1, \n                               arma::vec& childNodes2, \n                               arma::vec& splitValues, \n                               arma::vec& splitVarIds) {\n  int nrow = x.n_rows;\n  arma::vec output(nrow);\n  output.fill(0);\n  parallelTerminalNodes parallelTerminalNodes(x, childNodes1, childNodes2, splitValues, splitVarIds, output);\n  parallelFor(0, nrow, parallelTerminalNodes);\n  return output;\n}\n\n",
+    "created" : 1489098600719.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3847130659",
+    "id" : "102A76E7",
+    "lastKnownWriteTime" : 1489098192,
+    "last_content_update" : 1489098192,
+    "path" : "D:/Programmierung/Github/similarity/src/terminalNodeIDs.cpp",
+    "project_path" : "src/terminalNodeIDs.cpp",
+    "properties" : {
+    },
+    "relative_order" : 8,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "cpp"
+}
